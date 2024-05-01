@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Vagas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Vagas Cadastradas</h1>
+    <table id="vagasTable">
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Proprietário</th>
+                <th>Apartamento</th>
+                <th>Bloco</th>
+                <th>Modelo</th>
+                <th>Cor</th>
+                <th>Vaga</th>
+                <th>Ações</th> <!-- Coluna para botões de ação -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ABC1234</td>
+                <td>Fulano de Tal</td>
+                <td>101</td>
+                <td>A</td>
+                <td>Fiat Uno</td>
+                <td>Azul</td>
+                <td>1</td>
+                <td><button class="removerBtn">Remover</button></td> <!-- Botão de Remover -->
+            </tr>
+            <!-- Adicione mais linhas conforme necessário -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
