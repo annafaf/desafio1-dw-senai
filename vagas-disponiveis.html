@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas Disponíveis - Sistema de Estacionamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✅ Vagas Disponíveis</h1>
+            <nav class="breadcrumb">
+                <a href="index.html">🏠 Início</a> > Vagas Disponíveis
+            </nav>
+        </header>
+
+        <div class="controls">
+            <div class="view-options">
+                <button onclick="alternarVisualizacao('grid')" id="btnGrid" class="btn-primary">🎯 Grade</button>
+                <button onclick="alternarVisualizacao('list')" id="btnList" class="btn-secondary">📋 Lista</button>
+            </div>
+            <div class="actions">
+                <a href="cadastro.html" class="btn-primary">📝 Reservar Vaga</a>
+                <a href="vagas-ocupadas.html" class="btn-secondary">🚙 Vagas Ocupadas</a>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <h3>📊 Status Geral</h3>
+                <div id="resumoDisponiveis">
+                    <!-- Resumo será carregado dinamicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Visualização em grade -->
+        <div id="visualizacaoGrid" class="vagas-grid">
+            <!-- Vagas em grade serão carregadas dinamicamente -->
+        </div>
+
+        <!-- Visualização em lista -->
+        <div id="visualizacaoList" class="table-container" style="display: none;">
+            <table id="vagasDisponiveisTable">
+                <thead>
+                    <tr>
+                        <th>🅿️ Vaga</th>
+                        <th>🏢 Bloco</th>
+                        <th>📏 Tipo</th>
+                        <th>📍 Localização</th>
+                        <th>⚡ Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão carregados dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="mensagemSemVagas" class="empty-message" style="display: none;">
+            <p>😔 Não há vagas disponíveis no momento!</p>
+            <a href="vagas-ocupadas.html" class="btn-primary">🚙 Ver vagas ocupadas</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let modoVisualizacao = 'grid';
+        
+        // Inicializar página de vagas disponíveis
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarVagasDisponiveis();
+            atualizarResumoDisponiveis();
+        });
+
+        function alternarVisualizacao(modo) {
+            modoVisualizacao = modo;
+            const grid = document.getElementById('visualizacaoGrid');
+            const list = document.getElementById('visualizacaoList');
+            const btnGrid = document.getElementById('btnGrid');
+            const btnList = document.getElementById('btnList');
+
+            if (modo === 'grid') {
+                grid.style.display = 'grid';
+                list.style.display = 'none';
+                btnGrid.className = 'btn-primary';
+                btnList.className = 'btn-secondary';
+            } else {
+                grid.style.display = 'none';
+                list.style.display = 'block';
+                btnGrid.className = 'btn-secondary';
+                btnList.className = 'btn-primary';
+            }
+            
+            carregarVagasDisponiveis();
+        }
+
+        function reservarVaga(numeroVaga) {
+            // Redirecionar para cadastro com vaga pré-selecionada
+            window.location.href = `cadastro.html?vaga=${numeroVaga}`;
+        }
+    </script>
+</body>
+</html>

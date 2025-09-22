@@ -1,31 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Reserva</title>
+    <title>Cadastro de Reserva - Sistema de Estacionamento</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Cadastro de Reserva</h1>
-    <form id="cadastroForm">
-        <label for="placa">Placa do Veículo:</label>
-        <input type="text" id="placa" required><br>
-        <label for="proprietario">Nome do Proprietário:</label>
-        <input type="text" id="proprietario" required><br>
-        <label for="apartamento">Número do Apartamento:</label>
-        <input type="text" id="apartamento" required><br>
-        <label for="bloco">Bloco do Apartamento:</label>
-        <input type="text" id="bloco" required><br>
-        <label for="modelo">Modelo do Veículo:</label>
-        <input type="text" id="modelo" required><br>
-        <label for="cor">Cor do Veículo:</label>
-        <input type="text" id="cor" required><br>
-        <label for="vaga">Número da Vaga de Estacionamento:</label>
-        <input type="text" id="vaga" required><br>
-        <button type="submit">Salvar</button>
-    </form>
+    <div class="container">
+        <header>
+            <h1>📝 Cadastro de Reserva</h1>
+            <nav class="breadcrumb">
+                <a href="index.html">🏠 Início</a> > Cadastrar Reserva
+            </nav>
+        </header>
+
+        <div class="form-container">
+            <form id="cadastroForm">
+                <div class="form-group">
+                    <label for="placa">🚗 Placa do Veículo *</label>
+                    <input type="text" id="placa" required maxlength="8" placeholder="ABC1234">
+                    <small class="help-text">Formato: ABC1234 ou ABC1A23</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="proprietario">👤 Nome do Proprietário *</label>
+                    <input type="text" id="proprietario" required placeholder="Nome completo">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="apartamento">🏠 Número do Apartamento *</label>
+                        <input type="text" id="apartamento" required placeholder="101">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bloco">🏢 Bloco do Apartamento *</label>
+                        <select id="bloco" required>
+                            <option value="">Selecione o bloco</option>
+                            <option value="A">Bloco A</option>
+                            <option value="B">Bloco B</option>
+                            <option value="C">Bloco C</option>
+                            <option value="D">Bloco D</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modelo">🚙 Modelo do Veículo *</label>
+                        <input type="text" id="modelo" required placeholder="Ex: Honda Civic">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cor">🎨 Cor do Veículo *</label>
+                        <input type="text" id="cor" required placeholder="Ex: Branco">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vaga">🅿️ Vaga de Estacionamento *</label>
+                    <select id="vaga" required>
+                        <option value="">Selecione uma vaga disponível</option>
+                        <!-- Vagas serão carregadas dinamicamente pelo JavaScript -->
+                    </select>
+                    <small class="help-text">Apenas vagas disponíveis são mostradas</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="window.location.href='index.html'">
+                        ❌ Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        💾 Salvar Reserva
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="status-info">
+            <div class="status-card">
+                <h3>📊 Status das Vagas</h3>
+                <div id="statusVagas">
+                    <!-- Status será carregado dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
+    <script>
+        // Inicializar página de cadastro
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarVagasDisponiveis();
+            atualizarStatusVagas();
+        });
+    </script>
 </body>
 </html>
