@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas Ocupadas - Sistema de Estacionamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚙 Vagas Ocupadas</h1>
+            <nav class="breadcrumb">
+                <a href="index.html">🏠 Início</a> > Vagas Ocupadas
+            </nav>
+        </header>
+
+        <div class="controls">
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por placa, proprietário ou vaga...">
+                <button onclick="filtrarVagas()" class="btn-primary">Filtrar</button>
+                <button onclick="limparFiltro()" class="btn-secondary">Limpar</button>
+            </div>
+            <div class="actions">
+                <a href="cadastro.html" class="btn-primary">📝 Nova Reserva</a>
+                <a href="vagas-disponiveis.html" class="btn-secondary">✅ Vagas Disponíveis</a>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <h3>📊 Resumo</h3>
+                <div id="resumoOcupadas">
+                    <!-- Resumo será carregado dinamicamente -->
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="vagasOcupadasTable">
+                <thead>
+                    <tr>
+                        <th>🚗 Placa</th>
+                        <th>👤 Proprietário</th>
+                        <th>🏠 Apt.</th>
+                        <th>🏢 Bloco</th>
+                        <th>🚙 Modelo</th>
+                        <th>🎨 Cor</th>
+                        <th>🅿️ Vaga</th>
+                        <th>📅 Data</th>
+                        <th>⚡ Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão carregados dinamicamente -->
+                </tbody>
+            </table>
+            <div id="mensagemVazia" class="empty-message" style="display: none;">
+                <p>😊 Nenhuma vaga ocupada no momento!</p>
+                <a href="cadastro.html" class="btn-primary">📝 Cadastrar primeira reserva</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Inicializar página de vagas ocupadas
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarVagasOcupadas();
+            atualizarResumoOcupadas();
+        });
+
+        function filtrarVagas() {
+            const termo = document.getElementById('searchInput').value.toLowerCase();
+            const linhas = document.querySelectorAll('#vagasOcupadasTable tbody tr');
+            
+            linhas.forEach(linha => {
+                const texto = linha.textContent.toLowerCase();
+                linha.style.display = texto.includes(termo) ? '' : 'none';
+            });
+        }
+
+        function limparFiltro() {
+            document.getElementById('searchInput').value = '';
+            const linhas = document.querySelectorAll('#vagasOcupadasTable tbody tr');
+            linhas.forEach(linha => linha.style.display = '');
+        }
+    </script>
+</body>
+</html>
